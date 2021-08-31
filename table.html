@@ -109,10 +109,10 @@
             }
             else {
                 let headDiv=document.getElementsByClassName('heading');
-                for(let i=0;i<params.data.length();i++)
+                for(const prop in params.data[0])
                 {
                     let th=document.createElement("th");
-                    th.appendChild(document.createTextNode(row[params.data[i]]));
+                    th.appendChild(document.createTextNode(params.data[0][prop]));
                     headDiv.appendChild(th)
                 }
                 
@@ -120,9 +120,9 @@
                 for(let i=1;i<params.data.length();i++)
                 {
                     let tr = document.createElement("tr");
-                    for (const prop in row) {
+                    for (const prop in params.data[i]) {
                         let td = document.createElement("td");
-                        td.appendChild(document.createTextNode(row[prop]));
+                        td.appendChild(document.createTextNode(params.data[i][prop]));
                         tr.appendChild(td);
                         td.classList.add("value");
                     }

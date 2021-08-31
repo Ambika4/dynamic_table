@@ -14,7 +14,7 @@
             user-select: none;
         }
 
-        .heading {
+        #heading {
             font-weight: bold;
             color: white;
             background-color: rgb(0, 0, 205);
@@ -50,7 +50,7 @@
                 <div id="dataTable" style="display: none;">
                     <table class="table table-sm">
                         <tbody id="dataBody">
-                            <tr class="heading">
+                            <tr id="heading">
                                 <!-- <th>Payout Frequency</th>
                                 <th>ROI</th>
                                 <th>Interest Amount</th>
@@ -108,7 +108,8 @@
                 errorMessageDiv.style.display = "block";
             }
             else {
-                let headDiv=document.getElementsByClassName('heading');
+                let headDiv=document.getElementById('heading');
+                console.log("Params ",params)
                 for(const prop in params.data[0])
                 {
                     let th=document.createElement("th");
@@ -117,7 +118,7 @@
                 }
                 
                 let dataDiv = document.getElementById('dataBody');
-                for(let i=1;i<params.data.length();i++)
+                for(let i=1;i<params.data.length;i++)
                 {
                     let tr = document.createElement("tr");
                     for (const prop in params.data[i]) {

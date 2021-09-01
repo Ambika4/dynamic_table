@@ -16,16 +16,16 @@
 
         #heading {
             font-weight: bold;
-            color: white;
-            background-color: rgb(0, 0, 205);
+            /* color: white; */
+            /* background-color: rgb(0, 0, 205); */
             font-size: 1rem;
             text-align: center;
         }
 
-        .value {
+        #value_id {
             font-weight: bold;
-            color: white;
-            background-color: rgb(65, 105, 225);
+            /* color: white; */
+            /* background-color: rgb(65, 105, 225); */
             font-size: 1rem;
             text-align: center;
         }
@@ -108,17 +108,22 @@
                 errorMessageDiv.style.display = "block";
             }
             else {
+                let colourCodes=params.data[0];
+                console.log("Params ",params);
+                console.log(colourCodes,"colour codes")
+        
+                
                 let headDiv=document.getElementById('heading');
-                console.log("Params ",params)
-                for(const prop in params.data[0])
+               
+                for(const prop in params.data[1])
                 {
                     let th=document.createElement("th");
-                    th.appendChild(document.createTextNode(params.data[0][prop]));
+                    th.appendChild(document.createTextNode(params.data[1][prop]));
                     headDiv.appendChild(th)
                 }
                 
                 let dataDiv = document.getElementById('dataBody');
-                for(let i=1;i<params.data.length;i++)
+                for(let i=2;i<params.data.length;i++)
                 {
                     let tr = document.createElement("tr");
                     for (const prop in params.data[i]) {
@@ -128,6 +133,7 @@
                         td.classList.add("value");
                     }
                     dataDiv.appendChild(tr);
+                    dataDiv.id="value_id";
                 }
                 // params.data.forEach(row => {
                 //     let tr = document.createElement("tr");
@@ -139,7 +145,12 @@
                 //     }
                 //     dataDiv.appendChild(tr);
                 // });
+
                 document.getElementById("dataTable").style.display = "inline-block";
+                document.getElementById('heading').style.backgroundColor=colourCodes.changeColourBg?colourCodes.colourCodeBg:"#0040ff";
+                document.getElementById('heading').style.color=colourCodes.changeTextColour?colourCodes.colourCodeText:"#ffffff";
+                document.getElementById('value_id').style.color=colourCodes.changeTextColour?colourCodes.colourCodeText:"#ffffff";
+                document.getElementById('value_id').style.backgroundColor=colourCodes.changeHeadingColour?colourCodes.colourCodeHeading:"#0080ff";
             }
         }
 
